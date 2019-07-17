@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">One kind window</string>
+    <string name="system_title_1">Tank information</string>
+    <string name="system_title_2">Surronding Information</string>
+    <string name="data_title_1">Water Level of Tank</string>
+    <string name="data_title_2">Water Temperature</string>
+    <string name="data_title_3">Sunlight Intensity</string>
+    <string name="data_title_4">Electrical Conductivity</string>
+    <string name="data_title_5">pH Level</string>
+    <string name="data_title_6">Ambient Humidity</string>
+    <string name="data_title_7">Ambient Temperature</string>
+    <string name="data_1">-- %</string>
+    <string name="data_2">-- &#xb0;C</string>
+    <string name="data_3">-- kw/m\u00B2</string>
+    <string name="data_4">-- S/m</string>
+    <string name="data_5">--</string>
+    <string name="data_6">--</string>
+    <string name="data_7">--</string>
+
+</resources>

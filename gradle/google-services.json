@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "59561492734",
+    "firebase_url": "https://one-kind-house.firebaseio.com",
+    "project_id": "one-kind-house",
+    "storage_bucket": "one-kind-house.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59561492734:android:13c3c6a65bcbec53",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59561492734-6b6o4eqcfkviso79h5s5sl51j75orc5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUEjt93kKCvtnLD-Gdh-4dn2UtwBLNTCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59561492734-6b6o4eqcfkviso79h5s5sl51j75orc5u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

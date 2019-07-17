@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "658819993715",
+    "firebase_url": "https://onekindhousereview3.firebaseio.com",
+    "project_id": "onekindhousereview3",
+    "storage_bucket": "onekindhousereview3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658819993715:android:13c3c6a65bcbec53",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658819993715-cj7j6nnn9e4nir98n38t9a6cc7o7ekoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlFpN4tomeiyfYpWRMjdUEbMBmjW0cuP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658819993715-cj7j6nnn9e4nir98n38t9a6cc7o7ekoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

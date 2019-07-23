@@ -14,6 +14,8 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +34,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import pl.droidsonroids.gif.GifDrawable;
 
 public class MainActivity extends AppCompatActivity {
     // Fragment codes
@@ -160,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         //Start
         handler.postDelayed(runnable, 1000);
 
+
         //Btm Navigation Bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -170,8 +174,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Data", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_diary:
-                        Toast.makeText(MainActivity.this, "Diary", Toast.LENGTH_SHORT).show();
-                        Intent diary_intent = new Intent(MainActivity.this, Diary.class);
+                        Toast.makeText(MainActivity.this, "Diary_duplicate", Toast.LENGTH_SHORT).show();
+                        Intent diary_intent = new Intent(MainActivity.this, Diary_duplicate.class);
                         MainActivity.this.startActivity(diary_intent);
                         break;
                     case R.id.action_calendar:

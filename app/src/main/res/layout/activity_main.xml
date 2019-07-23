@@ -10,20 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/relLayout">
+
         <RelativeLayout
+            android:id="@+id/relLayoutTopBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:id="@+id/relLayoutTopBar">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:navigationIcon="@drawable/ic_menu_black_24dp"
+                app:title="Data"></androidx.appcompat.widget.Toolbar>
+
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolBar"
+                app:elevation="0dp">
+
                 <com.google.android.material.tabs.TabLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/toolbarTop"
-                    android:background="@color/colorPrimary">
-                </com.google.android.material.tabs.TabLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
             </com.google.android.material.appbar.AppBarLayout>
         </RelativeLayout>
         <RelativeLayout
@@ -31,6 +42,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/relLayoutTopBar"
                 android:id="@+id/relLayoutMiddle">
+
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swipe_refresh_layout"
                 android:layout_width="match_parent"

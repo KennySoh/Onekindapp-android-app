@@ -3,13 +3,20 @@ package com.example.myapplication;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONObject;
+
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
 
 public class Tab1Fragment extends Fragment {
     public static final String TAG = "Tab1Fragment";
@@ -39,8 +46,78 @@ public class Tab1Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment1,container,false);
 
-        //TOdelete hackish
-//        ((MainActivity)getActivity()).httpCall();
+
+        // Gif Animation
+        ImageView animatedImageView1=(ImageView) view.findViewById(R.id.animatedGif_ImageView1);
+        ImageView animatedImageView2=(ImageView) view.findViewById(R.id.animatedGif_ImageView2);
+        ImageView animatedImageView3=(ImageView) view.findViewById(R.id.animatedGif_ImageView3);
+
+        final GifDrawable gifFromResource1;
+        final GifDrawable gifFromResource2;
+        final GifDrawable gifFromResource3;
+
+
+        try {
+            gifFromResource1 = new GifDrawable( getResources(), R.raw.plant_normal);
+            animatedImageView1.setImageDrawable(gifFromResource1);
+//            animatedImageView1.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    gifFromResource1.seekTo(10);
+//                    gifFromResource1.start();
+//                    final Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            //Do something after 100ms
+//                            gifFromResource1.stop();
+//                        }
+//                    }, 2000);
+//                }
+//            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            gifFromResource2 = new GifDrawable( getResources(), R.raw.sunny_mid_sun_normal);
+            animatedImageView2.setImageDrawable(gifFromResource2);
+            animatedImageView2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    gifFromResource2.seekTo(10);
+                    gifFromResource2.start();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource2.stop();
+                        }
+                    }, 2000);
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            gifFromResource3 = new GifDrawable( getResources(), R.raw.sunny_mid_cloud_in);
+            animatedImageView3.setImageDrawable(gifFromResource3);
+            gifFromResource3.seekTo(10);
+            gifFromResource3.start();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 100ms
+                    gifFromResource3.stop();
+                }
+            }, 5000);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         dataText1 = (TextView) view.findViewById(R.id.data_waterlevel);
         dataText2 = (TextView) view.findViewById(R.id.data_watertemp);

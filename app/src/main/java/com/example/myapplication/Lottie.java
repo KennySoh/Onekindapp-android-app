@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -22,6 +23,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
+
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
 
 public class Lottie extends AppCompatActivity implements View.OnTouchListener, GestureDetector.OnGestureListener {
     String DEBUG_TAG="Lottie_activity";
@@ -52,10 +57,97 @@ public class Lottie extends AppCompatActivity implements View.OnTouchListener, G
         mGestureDetector = new GestureDetector(this,this);
 
         ImageView animatedImageView=(ImageView) findViewById(R.id.animatedGif_ImageView);
+        ImageView animatedImageView1=(ImageView) findViewById(R.id.animatedGif1_ImageView);
+        ImageView animatedImageView2=(ImageView) findViewById(R.id.animatedGif2_ImageView);
+        ImageView animatedImageView3=(ImageView) findViewById(R.id.animatedGif3_ImageView);
+        ImageView animatedImageView4=(ImageView) findViewById(R.id.animatedGif4_ImageView);
+        ImageView animatedImageView5=(ImageView) findViewById(R.id.animatedGif5_ImageView);
+        ImageView animatedImageView6=(ImageView) findViewById(R.id.animatedGif6_ImageView);
+        ImageView animatedImageView7=(ImageView) findViewById(R.id.animatedGif7_ImageView);
+        ImageView animatedImageView8=(ImageView) findViewById(R.id.animatedGif8_ImageView);
+        ImageView animatedImageView9=(ImageView) findViewById(R.id.animatedGif9_ImageView);
+        ImageView animatedImageView10=(ImageView) findViewById(R.id.animatedGif10_ImageView);
+        ImageView animatedImageView11=(ImageView) findViewById(R.id.animatedGif11_ImageView);
+        ImageView animatedImageView12=(ImageView) findViewById(R.id.animatedGif12_ImageView);
+        ImageView animatedImageView13=(ImageView) findViewById(R.id.animatedGif13_ImageView);
+        ImageView animatedImageView14=(ImageView) findViewById(R.id.animatedGif14_ImageView);
+        ImageView animatedImageView15=(ImageView) findViewById(R.id.animatedGif15_ImageView);
+        ImageView animatedImageView16=(ImageView) findViewById(R.id.animatedGif15_ImageView);
+
+
+        try {
+            final GifDrawable gifFromResource = new GifDrawable( getResources(), R.raw.plant_normal);
+            animatedImageView.setImageDrawable(gifFromResource);
+            animatedImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gifFromResource.seekTo(10);
+                gifFromResource.start();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Do something after 100ms
+                        gifFromResource.stop();
+                    }
+                }, 2000);
+            }
+        });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Glide.with(this)
-                .load(R.raw.test)
-                .into(animatedImageView);
+                .load(R.raw.sunny_mid_sun_normal)
+                .into(animatedImageView1);
+
+        Glide.with(this)
+                .load(R.raw.sunny_bright_cloud_in)
+                .into(animatedImageView2);
+
+        Glide.with(this)
+                .load(R.raw.sunny_bright_cloud_normal)
+                .into(animatedImageView3);
+
+        Glide.with(this)
+                .load(R.raw.sunny_bright_cloud_out)
+                .into(animatedImageView5);
+        Glide.with(this)
+                .load(R.raw.sunny_mid_cloud_in)
+                .into(animatedImageView6);
+        Glide.with(this)
+                .load(R.raw.sunny_mid_cloud_normal)
+                .into(animatedImageView7);
+        Glide.with(this)
+                .load(R.raw.sunny_mid_cloud_out)
+                .into(animatedImageView8);
+        Glide.with(this)
+                .load(R.raw.sunny_mid_sun_in)
+                .into(animatedImageView9);
+        Glide.with(this)
+                .load(R.raw.sunny_mid_sun_normal)
+                .into(animatedImageView10);
+        Glide.with(this)
+                .load(R.raw.sunny_mid_sun_out)
+                .into(animatedImageView11);
+        Glide.with(this)
+                .load(R.raw.plant_dead)
+                .into(animatedImageView12);
+        Glide.with(this)
+                .load(R.raw.plant_drooping_to_dead)
+                .into(animatedImageView13);
+
+        Glide.with(this)
+                .load(R.raw.plant_normal)
+                .into(animatedImageView14);
+        Glide.with(this)
+                .load(R.raw.plant_normal_to_drooping)
+                .into(animatedImageView15);
+
+        Glide.with(this)
+                .load(R.raw.plant_reverse_drooping_to_normal)
+                .into(animatedImageView16);
+
 
     }
     private void animationClicked() {

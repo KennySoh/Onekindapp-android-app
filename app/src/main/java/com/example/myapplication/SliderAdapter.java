@@ -1,13 +1,17 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -18,6 +22,11 @@ public class SliderAdapter extends PagerAdapter {
 
     Context context;
     LayoutInflater layoutInflater;
+    VideoView videoView;
+
+    public void restartVideo(){
+      videoView.seekTo(0);
+    };
 
     public SliderAdapter(Context context){
         this.context=context;
@@ -41,6 +50,11 @@ public class SliderAdapter extends PagerAdapter {
             "Step 2",
             "Step 3"
     };
+    public Integer[] slide_videos={
+            R.raw.video_tasty,
+            R.raw.step2,
+            R.raw.step4_test
+    };
 
     @Override
     public int getCount() {
@@ -59,10 +73,15 @@ public class SliderAdapter extends PagerAdapter {
         ImageView slideImageView =(ImageView)view.findViewById(R.id.slide_image);
         TextView slideHeading= (TextView) view.findViewById(R.id.slide_heading);
         TextView slideDescription = (TextView)view.findViewById(R.id.slide_description);
+        videoView=(VideoView)view.findViewById(R.id.videoView);
 
         slideImageView.setImageResource(slide_images[position]);
         slideHeading.setText((slide_headings[position]));
         slideDescription.setText(slide_descs[position]);
+        videoView.setVideoURI(Uri.parse("android.resource://"+context.getPackageName()+"/"+slide_videos[position]));
+        videoView.setMediaController(new MediaController(context));
+        videoView.requestFocus();
+        videoView.start();
 
         container.addView(view);
         return view;

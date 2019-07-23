@@ -5,6 +5,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -28,6 +29,17 @@ public class Diary extends AppCompatActivity {
                 Toast.makeText(Diary.this, "Entries", Toast.LENGTH_SHORT).show();
                 Intent entries_intent = new Intent(Diary.this, Entries.class);
                 Diary.this.startActivity(entries_intent);
+            }
+        });
+
+        //Actionbar
+        View fab1= findViewById(R.id.floatingActionButton);
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Diary.this, "QRCODE", Toast.LENGTH_SHORT).show();
+                Intent qr_intent = new Intent(Diary.this, qr_code.class);
+                Diary.this.startActivity(qr_intent);
             }
         });
 

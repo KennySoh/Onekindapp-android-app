@@ -2,36 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="20sp">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/slide_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/slide_heading"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50sp"
         app:srcCompat="@drawable/group10" />
 
     <TextView
         android:id="@+id/slide_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/slide_image"
+        android:layout_below="@id/videoView"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="false"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="70dp"
         android:text="HEADING"
-        android:textColor="@color/colorWhiteOB"
+        android:textColor="@color/colorPrimaryDarkOB"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/slide_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/slide_heading"
+        android:layout_below="@id/slide_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20sp"
         android:text="loran persium latisum"
         android:textColor="@color/colorTransparentWhiteOB" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

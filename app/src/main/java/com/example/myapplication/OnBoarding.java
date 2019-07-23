@@ -90,6 +90,8 @@ public class OnBoarding extends AppCompatActivity {
                 mNextButton.setEnabled(false);
                 mNextButton.setVisibility(View.INVISIBLE);
             }
+            mSliderAdapter.restartVideo();
+            mSliderViewPager.getCurrentItem();
         }
 
         @Override

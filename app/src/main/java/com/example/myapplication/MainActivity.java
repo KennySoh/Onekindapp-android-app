@@ -96,16 +96,14 @@ public class MainActivity extends AppCompatActivity {
         adapter= new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Tab1Fragment());
         adapter.addFragment(new Tab2Fragment());
-        adapter.addFragment(new Tab3Fragment());
         mViewPager.setAdapter(adapter);
 
         TabLayout tabLayout=((TabLayout) findViewById(R.id.toolbarTop));
         tabLayout.setupWithViewPager(mViewPager);
 
 
-        tabLayout.getTabAt(0).setText("System 1");
-        tabLayout.getTabAt(1).setText("System 2");
-        tabLayout.getTabAt(2).setText("System 3");
+        tabLayout.getTabAt(0).setText("Tank");
+        tabLayout.getTabAt(1).setText("Information");
         tabLayout.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#ffffff"));
 
 
@@ -134,13 +132,13 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 JSONArray jsonarray = new JSONArray(myResponse);
 
-                                JSONObject jsonobject0 = jsonarray.getJSONObject(0);
-                                Tab1Fragment frag1 =(Tab1Fragment) adapter.getItem(0);
-                                Log.i("Fragments",frag1.setJsonData(jsonobject0));
-                                Tab1Fragment frag2 =(Tab1Fragment) adapter.getItem(1);
-                                Log.i("Fragments",frag2.setJsonData(myResponse));
-                                Tab1Fragment frag3 =(Tab1Fragment) adapter.getItem(2);
-                                Log.i("Fragments",frag3.setJsonData(myResponse));
+//                                JSONObject jsonobject0 = jsonarray.getJSONObject(0);
+//                                Tab1Fragment frag1 =(Tab1Fragment) adapter.getItem(0);
+//                                Log.i("Fragments",frag1.setJsonData(jsonobject0));
+//                                Tab1Fragment frag2 =(Tab1Fragment) adapter.getItem(2);
+//                                Log.i("Fragments",frag2.setJsonData(myResponse));
+//                                Tab1Fragment frag3 =(Tab1Fragment) adapter.getItem(2);
+//                                Log.i("Fragments",frag3.setJsonData(myResponse));
                             }catch (Exception e){
                                 //pass
                                 Log.i("json","error");
@@ -237,35 +235,34 @@ public class MainActivity extends AppCompatActivity {
                                 defaultData.putOpt("ambtemp", "--");
 
                                 jsonarray = new JSONArray(myResponse);
-                                jsonobject0 = jsonarray.getJSONObject(1);
-                                jsonobject1 = defaultData;
+                                jsonobject0 = jsonarray.getJSONObject(2);
                                 jsonobject2 = defaultData;
-
-                                Log.i("Fragments",(jsonobject0.toString()));
+                                Log.i("JSON", jsonobject0.toString());
+                                jsonobject1=jsonarray.getJSONObject(2);
                                 Tab1Fragment frag1 =(Tab1Fragment) adapter.getItem(0);
-                                Log.i("Fragments",frag1.setJsonData(jsonobject0));
+                                Log.i("Fragments",frag1.setJsonData(jsonobject1));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
                             try{
-                                jsonobject1=jsonarray.getJSONObject(0);
+                                jsonobject1=jsonarray.getJSONObject(2);
                                 Log.i("Fragments",(jsonobject1.toString()));
                                 Tab1Fragment frag2 =(Tab1Fragment) adapter.getItem(1);
                                 Log.i("Fragments",frag2.setJsonData(jsonobject1));
                             }catch(Exception e){
                                 //ignore
                             }
-                            try{
-                                jsonobject2=jsonarray.getJSONObject(2);
-                                Log.i("Fragments",(jsonobject2.toString()));
-                                Tab1Fragment frag3 =(Tab1Fragment) adapter.getItem(2);
-                                Log.i("Fragments",frag3.setJsonData(jsonobject2));
-                            }catch(Exception e){
-                                //ignore
-
-                            }
+//                            try{
+//                                jsonobject2=jsonarray.getJSONObject(2);
+//                                Log.i("Fragments",(jsonobject2.toString()));
+//                                Tab1Fragment frag3 =(Tab1Fragment) adapter.getItem(2);
+//                                Log.i("Fragments",frag3.setJsonData(jsonobject2));
+//                            }catch(Exception e){
+//                                //ignore
+//
+//                            }
                         }
                     });
                 }

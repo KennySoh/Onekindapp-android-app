@@ -125,35 +125,25 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-
-                    <ViewSwitcher
-                        android:id="@+id/simpleViewSwitcher"
+                    <EditText
+                        android:id="@+id/myEditText_Subtitle1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-                        <TextView
-                            android:id="@+id/myEntriesText_Subtitle1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5sp"
-                            android:layout_marginTop="20sp"
-                            android:layout_marginRight="5sp"
-                            android:fontFamily="sans-serif-condensed"
-                            android:text="SubTitle 1"
-                            android:textColor="@color/colorPrimaryDarkOB"
-                            android:textSize="18sp" />
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5sp"
+                        android:hint="Write Title Here"
+                        android:inputType="text" />
 
-                        <TextView
-                            android:id="@+id/myEntriesText_Subtitle2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5sp"
-                            android:fontFamily="sans-serif-condensed"
-                            android:maxLength="350"
-                            android:text="Lorem ipsum dolar sit amet , consecteturLorem ipsum dolar sit amet , consecteturLorem ipsum dolar sit amet , consecteturLorem ipsum dolar sit amet , consecteturLorem ipsum dolar sit amet , consecteturLorem ipsum dodddddddddddddddddd d ds ds ds ds dffllds lomfls lfm ldsm ldmsl mldslar sit amet , consecteturLorem ipsum dolar sit amet , consecteturLorem ipsum dolar sit amet , consecteturLorem ipsum dolar sit amet , consdsdsds  ds ds ds ds ds ds ds dfd feokreok otemkingronrgn oirnei nern oern irenoi nreini rneoi nren knvdokn jvno fekn eectetur"
-                            android:textColor="@color/colorPrimaryDarkOB"
-                            android:textSize="18sp" />
-
-                    </ViewSwitcher>
+                    <EditText
+                        android:id="@+id/myEntriesText_Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5sp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="Please Pen Down Your Thoughts Here!"
+                        android:inputType="textMultiLine|text"
+                        android:maxLength="350"
+                        android:textColor="@color/colorPrimaryDarkOB"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/buttonNext"

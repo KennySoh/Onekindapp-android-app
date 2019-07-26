@@ -22,9 +22,8 @@ import android.widget.ViewSwitcher;
 public class Entries2 extends AppCompatActivity {
     Toolbar toolbar;
     ImageView imageView1;
-    Button btnNext;
-    ViewSwitcher simpleViewSwitcher;
-    @Override
+    Button btnSave;
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entries2);
@@ -46,28 +45,13 @@ public class Entries2 extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArrayExtra, 0, byteArrayExtra.length, new BitmapFactory.Options());
         imageView1.setImageBitmap(bitmap);
 
-        //View Switcher
-        // get The references of Button and ViewSwitcher
-        btnNext = (Button) findViewById(R.id.buttonNext);
-        simpleViewSwitcher = (ViewSwitcher) findViewById(R.id.simpleViewSwitcher); // get the reference of ViewSwitcher
-        // Declare in and out animations and load them using AnimationUtils class
-        Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
-        Animation out = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+        btnSave = (Button) findViewById(R.id.buttonNext);
 
-        // set the animation type to ViewSwitcher
-        simpleViewSwitcher.setInAnimation(in);
-        simpleViewSwitcher.setOutAnimation(out);
-
-
-        // ClickListener for NEXT button
-        // When clicked on Button ViewSwitcher will switch between views
-        // The current view will go out and next view will come in with specified animation
-        btnNext.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                // show the next view of ViewSwitcher
-                simpleViewSwitcher.showNext();
+                // Into SQL DataBase
             }
         });
 

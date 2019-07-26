@@ -112,23 +112,9 @@ public class Tab1Fragment extends Fragment {
         animatedImageView8=(ImageView) view.findViewById(R.id.animatedGif_ImageView8);
 
         try {
-            gifFromResource1 = new GifDrawable( getResources(), R.raw.plant_normal);
+            gifFromResource1 = new GifDrawable( getResources(), R.raw.plant_dead);
             animatedImageView1.setImageDrawable(gifFromResource1);
-//            animatedImageView1.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    gifFromResource1.seekTo(10);
-//                    gifFromResource1.start();
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //Do something after 100ms
-//                            gifFromResource1.stop();
-//                        }
-//                    }, 2000);
-//                }
-//            });
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,7 +126,15 @@ public class Tab1Fragment extends Fragment {
             e.printStackTrace();
         }
 
+        //water_container (Filling up)
+        //12500ms,10861 pos -FULL
+        //6500ms ,5513 pos -Half
+        //3000ms , 2216 pos -Low
 
+        //water_container_reverse
+        //0ms, 0 - Full
+        //6000ms, 5027 -half
+        //10000ms, 8878-Low
         try {
             gifFromResource4 = new GifDrawable( getResources(), R.raw.water_container);
             animatedImageView4.setImageDrawable(gifFromResource4);
@@ -152,8 +146,11 @@ public class Tab1Fragment extends Fragment {
                 public void run() {
                     //Do something after 100ms
                     gifFromResource4.stop();
+                    gifFromResource4.seekTo(2216);
+                    Log.i("Animation position",String.valueOf(gifFromResource4.getCurrentPosition()));
+
                 }
-            }, 11500);
+            }, 3000);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -414,7 +411,34 @@ public class Tab1Fragment extends Fragment {
 
             dataf_3=data_3f;// Must put animation above (Within data_3f & dataf_3)
 
+
+            //water_container (Filling up)
+            //12500ms,10861 pos -FULL
+            //6500ms ,5513 pos -Half
+            //3000ms , 2216 pos -Low
+
+            //water_container_reverse
+            //0ms, 0 - Full
+            //6000ms, 5027 -half
+            //10000ms, 8878-Low
+
             //Previous: dataf_1, New: data_1f,
+
+            final int water_full_n=12500;
+            final int water_half_n=6500;
+            final int water_low_n=3000;
+            final int water_full_np=10861;
+            final int water_half_np=5513;
+            final int water_low_np=2216;
+
+            final int water_full_r=0;
+            final int water_half_r=6000;
+            final int water_low_r=10000;
+            final int water_full_rp=0;
+            final int water_half_rp=5027;
+            final int water_low_rp=8878;
+
+
             float data_1f=Float.valueOf(data_1); //Waterlevel
 
             float emptyTank=0;
@@ -426,6 +450,187 @@ public class Tab1Fragment extends Fragment {
                 if (data_1f +0.1f>halfTank&&data_1f<fullTank) {
                     Log.i("Animations","Empty->Half");
                     Log.i("Animations",String.valueOf(dataf_1)+" , "+String.valueOf(data_1f));
+                    gifFromResource1 = new GifDrawable( getResources(), R.raw.plant_reverse_dead_to_drooping);//dead to drooping
+                    animatedImageView1.setImageDrawable(gifFromResource1);
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource1.stop();
+
+                            try {
+                                gifFromResource1= new GifDrawable( getResources(), R.raw.plant_drooping);
+                                animatedImageView1.setImageDrawable(gifFromResource1);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, 5000);
+
+                    //Water Animation
+                    gifFromResource4 = new GifDrawable( getResources(), R.raw.water_container);
+                    animatedImageView4.setImageDrawable(gifFromResource4);
+                    gifFromResource4.seekTo(water_low_np);
+                    final Handler handler_water = new Handler();
+                    handler_water.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource4.stop();
+                            gifFromResource4.seekTo(water_half_np);
+
+                        }
+                    }, water_half_n-water_low_n);
+
+                }
+            }
+
+            //Empty ->Full
+            if((dataf_1<emptyTank+0.1f)) {
+                if (data_1f +0.1f>fullTank) {
+                    Log.i("Animations","Empty->Full");
+                    Log.i("Animations",String.valueOf(dataf_1)+" , "+String.valueOf(data_1f));
+
+                    gifFromResource1 = new GifDrawable( getResources(), R.raw.plant_reverse_dead_to_drooping);//dead to drooping
+                    animatedImageView1.setImageDrawable(gifFromResource1);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource1.stop();
+
+                            try {
+                                gifFromResource1= new GifDrawable( getResources(), R.raw.plant_reverse_drooping_to_normal);
+                                animatedImageView1.setImageDrawable(gifFromResource1);
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //Do something after 100ms
+                                        gifFromResource1.stop();
+
+                                        try {
+                                            gifFromResource1= new GifDrawable( getResources(), R.raw.plant_normal);
+                                            animatedImageView1.setImageDrawable(gifFromResource1);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }, 5000);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, 5000);
+
+                    //Water Animation
+                    gifFromResource4 = new GifDrawable( getResources(), R.raw.water_container);
+                    animatedImageView4.setImageDrawable(gifFromResource4);
+                    gifFromResource4.seekTo(water_low_np);
+                    final Handler handler_water = new Handler();
+                    handler_water.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource4.stop();
+                            gifFromResource4.seekTo(water_full_np);
+
+                        }
+                    }, water_full_n-water_low_n);
+                }
+            }
+
+            //Half-> Empty
+            if((dataf_1< halfTank+0.1f&&dataf_1>emptyTank+0.1f)) {
+                if (data_1f <emptyTank+0.1f) {
+                    Log.i("Animations","Half->Empty");
+                    Log.i("Animations",String.valueOf(dataf_1)+" , "+String.valueOf(data_1f));
+
+                    gifFromResource1 = new GifDrawable( getResources(), R.raw.plant_drooping_to_dead);
+                    animatedImageView1.setImageDrawable(gifFromResource1);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource1.stop();
+
+                            try {
+                                gifFromResource1= new GifDrawable( getResources(), R.raw.plant_dead);
+                                animatedImageView1.setImageDrawable(gifFromResource1);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, 5000);
+
+                    //Water Animation
+                    gifFromResource4 = new GifDrawable( getResources(), R.raw.water_container_reverse);
+                    animatedImageView4.setImageDrawable(gifFromResource4);
+                    gifFromResource4.seekTo(water_half_rp);
+                    final Handler handler_water = new Handler();
+                    handler_water.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource4.stop();
+                            gifFromResource4.seekTo(water_low_rp);
+
+                        }
+                    }, water_low_r-water_half_r);
+                }
+            }
+
+            //Half -> Full
+            if((dataf_1< halfTank+0.1f&&dataf_1>emptyTank+0.1f)) {
+                if (data_1f +0.1f>fullTank) {
+                    Log.i("Animations","Half->Full");
+                    Log.i("Animations",String.valueOf(dataf_1)+" , "+String.valueOf(data_1f));
+
+                    gifFromResource1 = new GifDrawable( getResources(), R.raw.plant_reverse_drooping_to_normal);
+                    animatedImageView1.setImageDrawable(gifFromResource1);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource1.stop();
+
+                            try {
+                                gifFromResource1= new GifDrawable( getResources(), R.raw.plant_normal);
+                                animatedImageView1.setImageDrawable(gifFromResource1);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, 5000);
+
+                    //Water Animation
+                    gifFromResource4 = new GifDrawable( getResources(), R.raw.water_container);
+                    animatedImageView4.setImageDrawable(gifFromResource4);
+                    gifFromResource4.seekTo(water_half_np);
+                    final Handler handler_water = new Handler();
+                    handler_water.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource4.stop();
+                            gifFromResource4.seekTo(water_full_np);
+
+                        }
+                    }, water_full_n-water_half_n);
+                }
+            }
+
+            //Full ->Half
+            if((dataf_1+0.1f>fullTank)) {
+                if (data_1f< halfTank+0.1f&&data_1f+0.1f>emptyTank) {
+                    Log.i("Animations","Full->Half");
+                    Log.i("Animations",String.valueOf(dataf_1)+" , "+String.valueOf(data_1f));
+
                     gifFromResource1 = new GifDrawable( getResources(), R.raw.plant_normal_to_drooping);
                     animatedImageView1.setImageDrawable(gifFromResource1);
                     final Handler handler = new Handler();
@@ -443,41 +648,71 @@ public class Tab1Fragment extends Fragment {
                             }
                         }
                     }, 5000);
-                }
-            }
 
-            //Empty ->Full
-            if((dataf_1==emptyTank)) {
-                if (data_1f == halfTank) {
+                    //Water Animation
+                    gifFromResource4 = new GifDrawable( getResources(), R.raw.water_container_reverse);
+                    animatedImageView4.setImageDrawable(gifFromResource4);
+                    gifFromResource4.seekTo(water_full_rp);
+                    final Handler handler_water = new Handler();
+                    handler_water.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource4.stop();
+                            gifFromResource4.seekTo(water_half_rp);
 
-                }
-            }
-
-            //Half-> Empty
-            if((dataf_1== halfTank)) {
-                if (data_1f == emptyTank) {
-
-                }
-            }
-
-            //Half -> Full
-            if((dataf_1==halfTank)) {
-                if (data_1f == fullTank) {
-
-                }
-            }
-
-            //Full ->Half
-            if((dataf_1==fullTank)) {
-                if (data_1f == halfTank) {
-
+                        }
+                    }, water_half_r-water_full_r);
                 }
             }
 
             //Full ->Empty
-            if((dataf_1==fullTank)) {
-                if (data_1f == emptyTank) {
+            if((dataf_1+0.1f>fullTank)) {
+                if (data_1f<emptyTank+0.1f) {
+                    Log.i("Animations","Full->Empty");
+                    Log.i("Animations",String.valueOf(dataf_1)+" , "+String.valueOf(data_1f));
 
+                    gifFromResource1 = new GifDrawable( getResources(), R.raw.plant_normal_to_drooping);
+                    animatedImageView1.setImageDrawable(gifFromResource1);
+
+                    //Water Animation
+                    gifFromResource4 = new GifDrawable( getResources(), R.raw.water_container_reverse);
+                    animatedImageView4.setImageDrawable(gifFromResource4);
+                    gifFromResource4.seekTo(water_full_rp);
+                    gifFromResource4.start();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Do something after 100ms
+                            gifFromResource1.stop();
+
+                            try {
+                                gifFromResource1= new GifDrawable( getResources(), R.raw.plant_drooping_to_dead);
+                                animatedImageView1.setImageDrawable(gifFromResource1);
+
+                                final Handler handler2 = new Handler();
+                                handler2.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //Do something after 100ms
+                                        gifFromResource1.stop();
+                                        gifFromResource4.stop();
+                                        gifFromResource4.seekTo(water_low_rp);
+
+                                        try {
+                                            gifFromResource1= new GifDrawable( getResources(), R.raw.plant_dead);
+                                            animatedImageView1.setImageDrawable(gifFromResource1);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }, 5000);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, 5000);
                 }
             }
 

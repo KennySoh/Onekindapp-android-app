@@ -7,6 +7,8 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -178,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_calendar:
                         Toast.makeText(MainActivity.this, "Calender", Toast.LENGTH_SHORT).show();
-                        Intent lottie_intent = new Intent(MainActivity.this, Lottie.class);
+                        Intent lottie_intent = new Intent(MainActivity.this, RecyclerViewTest.class);
                         MainActivity.this.startActivity(lottie_intent);
 
 //                        Toast.makeText(MainActivity.this, "Onboarding", Toast.LENGTH_SHORT).show();

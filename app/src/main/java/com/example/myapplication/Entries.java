@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -25,12 +29,14 @@ public class Entries extends AppCompatActivity {
     Calendar mCalendar;
 
     ImageView imageView1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entries);
 
-         imageView1=findViewById(R.id.myImageView2);
+        imageView1=findViewById(R.id.myImageView2);
 
         // TimeStamps
         /* https://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html*/

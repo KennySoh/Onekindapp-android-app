@@ -3,7 +3,9 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <application
@@ -13,8 +15,8 @@
         android:roundIcon="@mipmap/notification_onekindhouse_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Diary_duplicate"></activity>
+        <activity android:name=".RecyclerViewTest"></activity>
+        <activity android:name=".Diary_duplicate" />
         <activity android:name=".qr_code" />
         <activity android:name=".Home">
             <intent-filter>

@@ -19,6 +19,7 @@ public class qr_code extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent dairy_intent = new Intent(qr_code.this, Diary.class);
+                finish();
                 qr_code.this.startActivity(dairy_intent);
             }
         });

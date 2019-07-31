@@ -36,12 +36,12 @@
             android:id="@+id/relLayoutMiddle"
             android:layout_marginBottom="50dp">
 
-            <ScrollView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fillViewport="true">
+                android:id="@+id/rv_number">
+            </androidx.recyclerview.widget.RecyclerView>
 
-            </ScrollView>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton"
                 android:layout_width="wrap_content"

@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -23,12 +24,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-public class Entries extends AppCompatActivity {
+public class Entries extends AppCompatActivity implements GreenAdapter.ListItemClickListener {
     String Tag="Entries";
-    Timestamp mTimeStamp;
-    Calendar mCalendar;
+    ImageView mImageView;
+    TextView mTitleView;
 
-    ImageView imageView1;
+
+    //Recycler View
+    private int NUM_LIST_ITEMS=100;
+    GreenAdapter mAdapter;
+    RecyclerView mNumbersList;
+    String[] myTitleSet;
+    String[] myBodySet;
+    Timestamp[] myTimeStamp;
+    private Toast mToast;
 
 
     @Override
@@ -36,40 +45,24 @@ public class Entries extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entries);
 
-        imageView1=findViewById(R.id.myImageView2);
+        //Getting title & imageId from Diary_duplicate page
+        Intent myIntent= getIntent();
+        String title=myIntent.getStringExtra("title");
+        int imageId=myIntent.getIntExtra("imageId", R.drawable.image_mint_leave_adjusted);
 
-        // TimeStamps
-        /* https://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html*/
-        /* https://www.mkyong.com/java/java-date-and-calendar-examples/*/
-        mCalendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
-        mTimeStamp= new Timestamp(System.currentTimeMillis());
-        mCalendar.setTime(mTimeStamp);
-        int year = mCalendar.get(Calendar.YEAR);
-        int month = mCalendar.get(Calendar.MONTH);
-        int day = mCalendar.get(Calendar.DAY_OF_MONTH);
-        Log.i(Tag,String.valueOf(year)+" "+String.valueOf(month)+ " "+String.valueOf(day));
+        mImageView=findViewById(R.id.myImageView);
+        mImageView.setImageResource(imageId);
+        mTitleView=findViewById(R.id.myImageViewText);
+        mTitleView.setText(title);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a"	);
-        String time = sdf.format(mTimeStamp);
-        Log.i(Tag,time); // 12:52 PM
-
-        SimpleDateFormat sdf_day = new SimpleDateFormat("EEE"	);
-        String day_name = sdf_day.format(mTimeStamp);
-        Log.i(Tag,day_name); //Wed
-
-
-        //Entries Onclick
-        View cardView1= findViewById(R.id.cardView1);
-        cardView1.setOnClickListener(new View.OnClickListener()
-        {
+        //Main ImageView return to Diary.class
+        mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                Toast.makeText(Entries.this, "Entries2", Toast.LENGTH_SHORT).show();
-                Intent entries2_intent = new Intent(Entries.this, Entries2.class);
-                Entries.this.startActivity(entries2_intent);
+            public void onClick(View v) {
+                finish();
             }
         });
+
 
         //Fab Button
         View fab1= findViewById(R.id.floatingActionButton);
@@ -79,6 +72,24 @@ public class Entries extends AppCompatActivity {
                 dispatchTakePictureIntent();
             }
         });
+
+        //Declaring timestamp,title,body to be send to recycler view & length of recyclerview
+        Timestamp timeStamp1=new Timestamp(1548450970000L); //in Miliseconds https://www.epochconverter.com/
+        Timestamp timeStamp2=new Timestamp(1551129370000L);
+        Timestamp timeStamp3=new Timestamp(1553548570000L);
+
+        myTitleSet=new String[]{"Day1", "My Second Day"};
+        myBodySet=new String[]{"This is my First Post!", "The plants seems to be increasing in lightning rate"};
+        myTimeStamp= new Timestamp[]{timeStamp1,timeStamp2};
+        NUM_LIST_ITEMS=myTitleSet.length;
+
+        //Linear LayoutManger  attaching adapter to recyclerview
+        mNumbersList= (RecyclerView)findViewById(R.id.rv_number);
+        LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+        mNumbersList.setLayoutManager((layoutManager));
+        mNumbersList.setHasFixedSize(true);
+        mAdapter=new GreenAdapter(NUM_LIST_ITEMS,myTitleSet,myBodySet,myTimeStamp,this);
+        mNumbersList.setAdapter(mAdapter);
 
     }
 
@@ -96,7 +107,6 @@ public class Entries extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView1.setImageBitmap(imageBitmap);
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
@@ -104,8 +114,26 @@ public class Entries extends AppCompatActivity {
 
             Intent intent = new Intent(this, Entries2.class);
             intent.putExtra("photo", image);
+            intent.putExtra("myTimestamp", System.currentTimeMillis());//Send current Time
             startActivity(intent);
 
         }
+    }
+
+    @Override
+    public void onListItemClick(int clickItemIndex) {
+        if(mToast!=null){
+            mToast.cancel();
+        }
+        String toastMessage="ITEM #"+clickItemIndex+" Clicked";
+        mToast=Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT);
+        mToast.show();
+
+        //Send intent to entries 2 along with Data in
+        Intent intent = new Intent(this, Entries2.class);
+        intent.putExtra("myTimestamp", myTimeStamp[clickItemIndex].getTime());
+        intent.putExtra("myTitleSet", myTitleSet[clickItemIndex]);
+        intent.putExtra("myBodySet", myBodySet[clickItemIndex]);
+        startActivity(intent);
     }
 }

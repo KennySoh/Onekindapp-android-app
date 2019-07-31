@@ -10,11 +10,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TimeZone;
+
 public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder> {
 
     private static final String TAG = GreenAdapter.class.getSimpleName();
+    final private ListItemClickListener mOnClickListener;
 
+    private String[] mTitleSet;
+    private String[] mBodySet;
+    private Timestamp[] mTimeStamps;
     private int mNumberItems;
+
+    public interface ListItemClickListener{
+        void onListItemClick(int clickItemIndex);
+    }
 
     /**
      * Constructor for GreenAdapter that accepts a number of items to display and the specification
@@ -22,8 +38,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      *
      * @param numberOfItems Number of items to display in list
      */
-    public GreenAdapter(int numberOfItems) {
+    public GreenAdapter(int numberOfItems, String[] myTitleSet, String[] myBodySet, Timestamp[] myTimeStamps, ListItemClickListener listener) {
         mNumberItems = numberOfItems;
+        mTitleSet=myTitleSet;
+        mBodySet=myBodySet;
+        mTimeStamps=myTimeStamps;
+        mOnClickListener=listener;
     }
 
     /**
@@ -81,11 +101,32 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     /**
      * Cache of the children views for a list item.
      */
-    class NumberViewHolder extends RecyclerView.ViewHolder {
+    class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // Will display the position in the list, ie 0 through getItemCount() - 1
-        TextView listItemNumberView;
+        TextView listSubtitle1;
+        TextView listSubtitle2;
+        TextView listDate1;
+        TextView listDate2;
+        TextView listDate3;
 
+        private final Map<Integer, String> month_map = new HashMap<Integer, String>(){
+            {
+                put(0, "Jan");
+                put(1, "Feb");
+                put(2, "Mar");
+                put(3, "Apr");
+                put(4, "May");
+                put(5, "Jun");
+                put(6, "Jul");
+                put(7, "Aug");
+                put(8, "Sep");
+                put(9, "Oct");
+                put(10, "Nov");
+                put(11, "Dec");
+
+            }
+        };
         /**
          * Constructor for our ViewHolder. Within this constructor, we get a reference to our
          * TextViews and set an onClickListener to listen for clicks. Those will be handled in the
@@ -96,7 +137,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         public NumberViewHolder(View itemView) {
             super(itemView);
 
-            listItemNumberView = (TextView) itemView.findViewById(R.id.myEntriesText_Subtitle1);
+            listSubtitle1 = (TextView) itemView.findViewById(R.id.myEntriesText_Subtitle1);
+            listSubtitle2 = (TextView) itemView.findViewById(R.id.myEntriesText_Subtitle2);
+            listDate1 = (TextView) itemView.findViewById(R.id.myEntriesText_Date1); //Feb
+            listDate2 = (TextView) itemView.findViewById(R.id.myEntriesText_Date2); //01 "Date"
+            listDate3 = (TextView) itemView.findViewById(R.id.myEntriesText_Date3); //12.30 pm
+            itemView.setOnClickListener(this);
         }
 
         /**
@@ -105,7 +151,35 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
          * @param listIndex Position of the item in the list
          */
         void bind(int listIndex) {
-            listItemNumberView.setText(String.valueOf(listIndex));
+            listSubtitle1.setText(mTitleSet[listIndex]);
+            listSubtitle2.setText(mBodySet[listIndex]);
+            Timestamp currentTimeStamp=mTimeStamps[listIndex];
+            // TimeStamps
+            /* https://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html*/
+            /* https://www.mkyong.com/java/java-date-and-calendar-examples/*/
+            Calendar mCalendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
+            mCalendar.setTime(currentTimeStamp);
+            int year = mCalendar.get(Calendar.YEAR);
+            int month = mCalendar.get(Calendar.MONTH);
+            int day = mCalendar.get(Calendar.DAY_OF_MONTH);
+
+            SimpleDateFormat sdf = new SimpleDateFormat("h:mm a"	);
+            String time = sdf.format(currentTimeStamp);
+            // 12:52 PM
+
+            SimpleDateFormat sdf_day = new SimpleDateFormat("EEE"	);
+            String day_name = sdf_day.format(currentTimeStamp);
+            //Wed
+            listDate1.setText(month_map.get(month));//Feb
+            listDate2.setText(String.valueOf(day)); //01 date
+            listDate3.setText(time); //12.30pm
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            int clickedPosition=getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
         }
     }
 }

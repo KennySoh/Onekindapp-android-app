@@ -33,7 +33,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         animatedImageView=findViewById(R.id.animatedGif_ImageView);
         try {
-            gifFromResource = new GifDrawable( getResources(), R.raw.logo_start);
+            gifFromResource = new GifDrawable( getResources(), R.raw.logo_start2);
             animatedImageView.setImageDrawable(gifFromResource);
             gifFromResource.seekTo(0);
             gifFromResource.start();
@@ -55,6 +55,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent onBoarding_intent = new Intent(Home.this, OnBoarding.class);
+                finish();
                 Home.this.startActivity(onBoarding_intent);
             }
         });

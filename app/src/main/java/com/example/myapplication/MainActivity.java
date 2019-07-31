@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 httpCall();
-                handler.postDelayed(this, 3000); // Time change
+                handler.postDelayed(this, 6000); // Time change
             }
         };
 
@@ -180,12 +180,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_calendar:
                         Toast.makeText(MainActivity.this, "Calender", Toast.LENGTH_SHORT).show();
-                        Intent lottie_intent = new Intent(MainActivity.this, RecyclerViewTest.class);
+                        Intent lottie_intent = new Intent(MainActivity.this, Barcode_test.class);
                         MainActivity.this.startActivity(lottie_intent);
 
-//                        Toast.makeText(MainActivity.this, "Onboarding", Toast.LENGTH_SHORT).show();
-//                        Intent onboarding_intent = new Intent(MainActivity.this, OnBoarding.class);
-//                        MainActivity.this.startActivity(onboarding_intent);
                         break;
                 }
                 return true;
@@ -256,15 +253,6 @@ public class MainActivity extends AppCompatActivity {
                             }catch(Exception e){
                                 //ignore
                             }
-//                            try{
-//                                jsonobject2=jsonarray.getJSONObject(2);
-//                                Log.i("Fragments",(jsonobject2.toString()));
-//                                Tab1Fragment frag3 =(Tab1Fragment) adapter.getItem(2);
-//                                Log.i("Fragments",frag3.setJsonData(jsonobject2));
-//                            }catch(Exception e){
-//                                //ignore
-//
-//                            }
                         }
                     });
                 }

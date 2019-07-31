@@ -87,7 +87,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/myEntriesText_Date3"
+                                android:id="@+id/myEntriesText_Date2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_horizontal|left"
@@ -100,7 +100,7 @@
                                 android:textSize="12sp" />
 
                             <TextView
-                                android:id="@+id/myEntriesText_Date2"
+                                android:id="@+id/myEntriesText_Date3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_horizontal|left"
@@ -134,7 +134,7 @@
                         android:inputType="text" />
 
                     <EditText
-                        android:id="@+id/myEntriesText_Subtitle2"
+                        android:id="@+id/myEditText_Subtitle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"

@@ -51,7 +51,6 @@ public class Diary extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_data:
                         Toast.makeText(Diary.this, "Data", Toast.LENGTH_SHORT).show();
-                        finish();
                         break;
                     case R.id.action_diary:
                         Toast.makeText(Diary.this, "Diary", Toast.LENGTH_SHORT).show();

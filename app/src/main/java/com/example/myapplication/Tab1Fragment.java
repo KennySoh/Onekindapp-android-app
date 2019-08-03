@@ -65,10 +65,10 @@ public class Tab1Fragment extends Fragment {
     ImageView animatedImageView7;// Moon gif
     ImageView animatedImageView8;// Temp gif
 
-//    private TextView datafText1;
-//    private TextView datafText2;
-//    private TextView datafText3;
-//    private TextView datafText4;
+    private TextView datafText1;
+    private TextView datafText2;
+    private TextView datafText3;
+    private TextView datafText4;
 
     private float dataf_3=500;
     private float dataf_1=0;
@@ -79,10 +79,10 @@ public class Tab1Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment1,container,false);
 
         // Data text displays
-//        datafText1=view.findViewById(R.id.data_sunlight1);
-//        datafText2=view.findViewById(R.id.data_ambtemp1);
-//        datafText3=view.findViewById(R.id.data_watertemp1);
-//        datafText4=view.findViewById(R.id.data_waterlevel1);
+        datafText1=view.findViewById(R.id.data_sunlight1);
+        datafText2=view.findViewById(R.id.data_ambtemp1);
+        datafText3=view.findViewById(R.id.data_watertemp1);
+        datafText4=view.findViewById(R.id.data_waterlevel1);
 
         //View Switcher
         // get The references of Button and ViewSwitcher
@@ -97,9 +97,9 @@ public class Tab1Fragment extends Fragment {
         //simpleViewSwitcher.showNext(); To show next image
 
 
-//        datafText1.setText("--"+" kw/m\u00B2");
-//        datafText2.setText(("--.-") + " \u2103");
-//        datafText3.setText(("--.-") + "\u2103");
+        datafText1.setText("--"+" kw/m\u00B2");
+        datafText2.setText(("--.-") + " \u2103");
+        datafText3.setText(("--.-") + "\u2103");
 
         // Gif Animation
         animatedImageView1=(ImageView) view.findViewById(R.id.animatedGif_ImageView1);
@@ -214,9 +214,9 @@ public class Tab1Fragment extends Fragment {
             data_6 = jsonobject.getString("humidity");
             data_7 = jsonobject.getString("ambtemp");
 
-//            datafText1.setText(data_3+" kw/m\u00B2");
-//            datafText2.setText(data_7 + " \u2103");
-//            datafText3.setText((data_2) + "\u2103");
+            datafText1.setText(data_3+" kw/m\u00B2");
+            datafText2.setText(data_7 + " \u2103");
+            datafText3.setText((data_2) + "\u2103");
 
 
             //Previous: dataf_3, New: data_3f,
@@ -400,10 +400,10 @@ public class Tab1Fragment extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-//                    datafText1.setTextColor(Color.parseColor("#E1221D1D"));
-//                    datafText2.setTextColor(Color.parseColor("#E1221D1D"));
-//                    //datafText3.setTextColor(Color.parseColor("#F2DDCB"));
-//                    datafText4.setTextColor(Color.parseColor("#E1221D1D"));
+                    datafText1.setTextColor(Color.parseColor("#E1221D1D"));
+                    datafText2.setTextColor(Color.parseColor("#E1221D1D"));
+                    //datafText3.setTextColor(Color.parseColor("#F2DDCB"));
+                    datafText4.setTextColor(Color.parseColor("#E1221D1D"));
 
 
                 }
@@ -720,15 +720,15 @@ public class Tab1Fragment extends Fragment {
             dataf_1=data_1f;// WaterLevel
 
 
-//            if(data_1.equals("0")) {
-//                datafText4.setText("Empty");
-//            }
-//            if(data_1.equals("1")) {
-//                datafText4.setText("Half");
-//            }
-//            if(data_1.equals("2")) {
-//                datafText4.setText("Full");
-//            }
+            if(data_1.equals("0")) {
+                datafText4.setText("Empty");
+            }
+            if(data_1.equals("1")) {
+                datafText4.setText("Half");
+            }
+            if(data_1.equals("2")) {
+                datafText4.setText("Full");
+            }
 
 
             if(Float.parseFloat(data_2)>30.0){

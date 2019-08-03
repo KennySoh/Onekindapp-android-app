@@ -32,6 +32,7 @@ public class Entries2 extends AppCompatActivity {
     Toolbar toolbar;
     ImageView imageView1;
     Button btnSave;
+    Intent intent;
 
     EditText listSubtitle1;
     EditText listSubtitle2;
@@ -39,6 +40,8 @@ public class Entries2 extends AppCompatActivity {
     TextView listDate2;
     TextView listDate3;
     TextView listDate4;
+
+    byte[] byteArrayExtra;
 
     private final Map<Integer, String> month_map = new HashMap<Integer, String>(){
         {
@@ -76,12 +79,9 @@ public class Entries2 extends AppCompatActivity {
 
         //Setting phototaken into imageView
         imageView1=findViewById(R.id.imageView1);
+        intent= getIntent();
         try {
-            byte[] byteArrayExtra = getIntent().getByteArrayExtra("photo");
-
-            //BitmapOptions is optional you can create bitmap without this also. This is the description of its use from google developer docs.
-            //BitmapFactory.Options: null-ok; Options that control downsampling and whether the image should be completely decoded, or just is size returned.
-
+            byteArrayExtra = intent.getByteArrayExtra("photo");
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArrayExtra, 0, byteArrayExtra.length, new BitmapFactory.Options());
             imageView1.setImageBitmap(bitmap);
         }catch (Exception e){
@@ -95,6 +95,17 @@ public class Entries2 extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 // Into SQL DataBase
+                long timeStamp_mili=intent.getLongExtra("myTimestamp",0);
+                String listSubtitle1_s=listSubtitle1.getText().toString();
+                String listSubtitle2_s=listSubtitle2.getText().toString();
+
+                Intent myIntent=new Intent();
+                Log.i("mAdapterE2_SaveBtn", "Title: "+listSubtitle1_s+", Body: "+listSubtitle2_s+", Timestamp: "+timeStamp_mili);
+                myIntent.putExtra("photo", byteArrayExtra); //Return Photo
+                myIntent.putExtra("myTimestamp", timeStamp_mili);// Return TimeStamp
+                myIntent.putExtra("title",listSubtitle1_s ); //Return Title
+                myIntent.putExtra("body", listSubtitle2_s); //Return Body
+                setResult(RESULT_OK, myIntent);
                 finish();
             }
         });
@@ -108,7 +119,6 @@ public class Entries2 extends AppCompatActivity {
        listDate3 = (TextView) findViewById(R.id.myEntriesText_Date3); //Feburary 2019
        listDate4 = (TextView) findViewById(R.id.myEntriesText_Date4); //12.30 pm
 
-       Intent intent = getIntent();
        //Fill in Timestamp
        try {
            long timeStamp_mili=intent.getLongExtra("myTimestamp",0);

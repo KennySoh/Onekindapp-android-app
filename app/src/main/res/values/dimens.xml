@@ -2,4 +2,16 @@
 <resources>
     <dimen name="data_data_size">18sp</dimen>
     <dimen name="data_title_size">15sp</dimen>
+    <dimen name="dataIOT_text_size">15sp</dimen>
+    <dimen name="dataIOTT_text_size">12sp</dimen>
+    <dimen name="dataIOt_margin_start">226dp</dimen>
+    <dimen name="dataIOt4_margin_top">325dp</dimen>
+    <dimen name="dataIOt3_margin_top">260dp</dimen>
+    <dimen name="dataIOt2_margin_top">193dp</dimen>
+    <dimen name="dataIOt1_margin_top">125dp</dimen>
+    <dimen name="dataIOtT4_margin_top">341dp</dimen>
+    <dimen name="dataIOtT3_margin_top">275dp</dimen>
+    <dimen name="dataIOtT2_margin_top">208dp</dimen>
+    <dimen name="dataIOtT1_margin_top">140dp</dimen>
+
 </resources>

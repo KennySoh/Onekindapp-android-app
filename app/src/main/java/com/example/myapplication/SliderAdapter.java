@@ -18,15 +18,14 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
+
 public class SliderAdapter extends PagerAdapter {
 
     Context context;
     LayoutInflater layoutInflater;
-    VideoView videoView;
-
-    public void restartVideo(){
-      videoView.seekTo(0);
-    };
 
     public SliderAdapter(Context context){
         this.context=context;
@@ -34,28 +33,31 @@ public class SliderAdapter extends PagerAdapter {
 
     //Arrays
     public int[] slide_images={
-            R.drawable.group10,
-            R.drawable.group11,
-            R.drawable.group12
+            R.raw.step_1,
+            R.raw.step_2,
+            R.raw.step_1,
+            R.raw.step_2,
+            R.raw.step_1
     };
 
     public String[] slide_headings={
-            "EAT",
-            "SLEEP",
-            "Code"
+            "Step 1",
+            "Step 2",
+            "Step 3",
+            "Step 4",
+            "Step 5"
     };
 
     public String[] slide_descs={
-            "Step 1",
-            "Step 2",
-            "Step 3"
+            "Insert Battery & Switch On",
+            "Attach To Window Grill & Slot Module In",
+            "Push & Connect Modules Together",
+            "Add End pipe",
+            "Water Your One Kind Window!"
     };
-    public Integer[] slide_videos={
-            R.raw.video_tasty,
-            R.raw.step2,
-            R.raw.step4_test
-    };
+    public
 
+    GifDrawable gifFromResource1;
     @Override
     public int getCount() {
         return slide_headings.length;
@@ -73,15 +75,17 @@ public class SliderAdapter extends PagerAdapter {
         ImageView slideImageView =(ImageView)view.findViewById(R.id.slide_image);
         TextView slideHeading= (TextView) view.findViewById(R.id.slide_heading);
         TextView slideDescription = (TextView)view.findViewById(R.id.slide_description);
-        videoView=(VideoView)view.findViewById(R.id.videoView);
 
-        slideImageView.setImageResource(slide_images[position]);
+
+        try {
+            gifFromResource1 = new GifDrawable( container.getResources(), slide_images[position]);
+            slideImageView.setImageDrawable(gifFromResource1);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         slideHeading.setText((slide_headings[position]));
         slideDescription.setText(slide_descs[position]);
-        videoView.setVideoURI(Uri.parse("android.resource://"+context.getPackageName()+"/"+slide_videos[position]));
-        videoView.setMediaController(new MediaController(context));
-        videoView.requestFocus();
-        videoView.start();
 
         container.addView(view);
         return view;

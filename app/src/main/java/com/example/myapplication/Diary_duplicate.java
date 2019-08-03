@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -34,16 +35,35 @@ public class Diary_duplicate extends AppCompatActivity implements GreenAdapter_D
     ArrayList<String> myTitleSet;
     private Toast mToast;
 
+    //Database
+    DatabaseHelper mDbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_duplicate);
 
+        //Database
+        mDbHelper= DatabaseHelper.getInstance(this);
+
         //Declaring Title for Recyclerview
         myTitleSet=new ArrayList<String >();
-//        myTitleSet.add("Mint Seeds");
-//        myTitleSet.add("Tomato");
-//        myTitleSet.add("Basil");
+        ArrayList<String> test;
+
+//        try {
+//            test = mDbHelper.readSeed();
+//            Log.i("dataaa",String.valueOf(test.size()));
+//            for(int i = 0; i < test.size(); i++){
+//                Log.i("dataaa",test.get(i));
+//            }
+////            mDbHelper.clearDataBase();
+//            myTitleSet=test;
+//        }catch (Exception e){
+//            Log.i("dataaa","Failed 1");
+//            e.printStackTrace();
+//        }
+
+
         NUM_LIST_ITEMS=myTitleSet.size();
 
         //Linear LayoutManger  attaching adapter to recyclerview
@@ -100,7 +120,8 @@ public class Diary_duplicate extends AppCompatActivity implements GreenAdapter_D
 
                     myTitleSet.add(seed);//myTitleSet automatically updates mTitleSet in adapter
                     //add into SQLite, include current position?
-                    //int currentPos=myTitleSet.size()-1;
+//                    int currentPos=myTitleSet.size()-1;
+//                    mDbHelper.createSeed(currentPos, seed);
                     mAdapter.updateData();
                 }
 

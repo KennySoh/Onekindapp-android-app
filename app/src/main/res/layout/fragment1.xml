@@ -15,10 +15,14 @@
             android:id="@+id/simpleViewSwitcher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+
             <ImageView
                 android:id="@+id/background_ImageView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignStart="@+id/simpleViewSwitcher"
+                android:layout_alignTop="@+id/simpleViewSwitcher"
+                android:layout_alignEnd="@+id/simpleViewSwitcher"
                 android:layout_marginLeft="1dp"
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,6 +168,132 @@
             <!--android:text="30"-->
             <!--android:textColor="#FFEB3B"-->
             <!--android:textSize="24sp" />-->
+
+        <TextView
+            android:id="@+id/data_sunlight1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/animatedGif_ImageView5"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerInParent="false"
+            android:layout_marginStart="@dimen/dataIOt_margin_start"
+            android:layout_marginTop="@dimen/dataIOt1_margin_top"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="28.1"
+            android:textColor="#0E0E0E"
+            android:textSize="@dimen/dataIOT_text_size" />
+
+        <TextView
+            android:id="@+id/data_ambtemp1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/animatedGif_ImageView5"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerInParent="false"
+            android:layout_centerHorizontal="false"
+            android:layout_marginStart="@dimen/dataIOt_margin_start"
+            android:layout_marginTop="@dimen/dataIOt2_margin_top"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="28.1"
+            android:textColor="#0E0E0E"
+            android:textSize="@dimen/dataIOT_text_size" />
+
+        <TextView
+            android:id="@+id/data_waterlevel1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/animatedGif_ImageView5"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginStart="@dimen/dataIOt_margin_start"
+            android:layout_marginTop="@dimen/dataIOt3_margin_top"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="28.1"
+            android:textColor="#0E0E0E"
+            android:textSize="@dimen/dataIOT_text_size" />
+
+        <TextView
+            android:id="@+id/data_watertemp1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/animatedGif_ImageView5"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginStart="@dimen/dataIOt_margin_start"
+            android:layout_marginTop="@dimen/dataIOt4_margin_top"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="28.1"
+            android:textColor="#0E0E0E"
+            android:textSize="@dimen/dataIOT_text_size" />
+
+        <TextView
+            android:id="@+id/datat_sunlight1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/animatedGif_ImageView5"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginStart="@dimen/dataIOt_margin_start"
+            android:layout_marginTop="@dimen/dataIOtT1_margin_top"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="Sunlight"
+            android:textColor="#0E0E0E"
+            android:textSize="@dimen/dataIOTT_text_size" />
+
+        <TextView
+            android:id="@+id/datat_ambtemp1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/animatedGif_ImageView5"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginStart="@dimen/dataIOt_margin_start"
+            android:layout_marginTop="@dimen/dataIOtT2_margin_top"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="Amb Temp"
+            android:textColor="#0E0E0E"
+            android:textSize="@dimen/dataIOTT_text_size" />
+
+        <TextView
+            android:id="@+id/datat_waterlevel1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/animatedGif_ImageView5"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginStart="@dimen/dataIOt_margin_start"
+            android:layout_marginTop="@dimen/dataIOtT3_margin_top"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="Water Level"
+            android:textColor="#0E0E0E"
+            android:textSize="@dimen/dataIOTT_text_size" />
+
+        <TextView
+            android:id="@+id/datat_watertemp1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/animatedGif_ImageView5"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginStart="@dimen/dataIOt_margin_start"
+            android:layout_marginTop="@dimen/dataIOtT4_margin_top"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="Water Temp"
+            android:textColor="#0E0E0E"
+            android:textSize="@dimen/dataIOTT_text_size" />
+
 
     </RelativeLayout>
 

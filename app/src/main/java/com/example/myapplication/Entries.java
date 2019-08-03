@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -18,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.sql.Timestamp;
+import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,14 +31,17 @@ public class Entries extends AppCompatActivity implements GreenAdapter.ListItemC
     ImageView mImageView;
     TextView mTitleView;
 
+    private int ENTRIES_2_CODE=201;
+
 
     //Recycler View
     private int NUM_LIST_ITEMS=100;
     GreenAdapter mAdapter;
     RecyclerView mNumbersList;
-    String[] myTitleSet;
-    String[] myBodySet;
-    Timestamp[] myTimeStamp;
+    ArrayList<String> myTitleSet;
+    ArrayList<String> myBodySet;
+    ArrayList<Long> myTimeStamp;
+    ArrayList<byte[]> myImageSet;
     private Toast mToast;
 
 
@@ -74,21 +79,19 @@ public class Entries extends AppCompatActivity implements GreenAdapter.ListItemC
         });
 
         //Declaring timestamp,title,body to be send to recycler view & length of recyclerview
-        Timestamp timeStamp1=new Timestamp(1548450970000L); //in Miliseconds https://www.epochconverter.com/
-        Timestamp timeStamp2=new Timestamp(1551129370000L);
-        Timestamp timeStamp3=new Timestamp(1553548570000L);
-
-        myTitleSet=new String[]{"Day1", "My Second Day"};
-        myBodySet=new String[]{"This is my First Post!", "The plants seems to be increasing in lightning rate"};
-        myTimeStamp= new Timestamp[]{timeStamp1,timeStamp2};
-        NUM_LIST_ITEMS=myTitleSet.length;
+//        Timestamp timeStamp1=new Timestamp(1548450970000L); //in Miliseconds https://www.epochconverter.com/
+        myTitleSet=new ArrayList<String>();
+        myBodySet=new ArrayList<String>();
+        myTimeStamp= new ArrayList<Long>();
+        myImageSet= new ArrayList<byte[]>();
+        NUM_LIST_ITEMS=myTitleSet.size();
 
         //Linear LayoutManger  attaching adapter to recyclerview
         mNumbersList= (RecyclerView)findViewById(R.id.rv_number);
         LinearLayoutManager layoutManager= new LinearLayoutManager(this);
         mNumbersList.setLayoutManager((layoutManager));
         mNumbersList.setHasFixedSize(true);
-        mAdapter=new GreenAdapter(NUM_LIST_ITEMS,myTitleSet,myBodySet,myTimeStamp,this);
+        mAdapter=new GreenAdapter(NUM_LIST_ITEMS,myTitleSet,myBodySet,myTimeStamp,myImageSet,this);
         mNumbersList.setAdapter(mAdapter);
 
     }
@@ -111,14 +114,38 @@ public class Entries extends AppCompatActivity implements GreenAdapter.ListItemC
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
             byte[] image = stream.toByteArray();
+            myImageSet.add(image);
 
             Intent intent = new Intent(this, Entries2.class);
             intent.putExtra("photo", image);
-            intent.putExtra("myTimestamp", System.currentTimeMillis());//Send current Time
-            startActivity(intent);
+            long timeStamp_mili=System.currentTimeMillis();
+            myTimeStamp.add(timeStamp_mili);
+            intent.putExtra("myTimestamp", timeStamp_mili);//Send current Time
+            Entries.this.startActivityForResult(intent,ENTRIES_2_CODE);
+
+        }
+
+        if (requestCode==ENTRIES_2_CODE){
+            try {
+                //add Title,Body,TimeStamp,Pictures into RecyclerView from entries2
+                byte[] byteArrayExtra1 = data.getByteArrayExtra("photo");
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArrayExtra1, 0, byteArrayExtra1.length, new BitmapFactory.Options());
+
+                String listSubtitle1_s=data.getStringExtra("title");
+                String listSubtitle2_s=data.getStringExtra("body");
+                Log.i("mAdapterE1_rc1", "Title: "+listSubtitle1_s+", Body: "+listSubtitle2_s);
+
+                myTitleSet.add(data.getStringExtra("title"));
+                myBodySet.add(data.getStringExtra("body"));
+                Log.i("mAdapter", "Title: "+myTitleSet.get(0)+", Body: "+myBodySet.get(0)+", Timestamp: "+myTimeStamp.get(0));
+                mAdapter.updateData();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
         }
     }
+
 
     @Override
     public void onListItemClick(int clickItemIndex) {
@@ -131,9 +158,10 @@ public class Entries extends AppCompatActivity implements GreenAdapter.ListItemC
 
         //Send intent to entries 2 along with Data in
         Intent intent = new Intent(this, Entries2.class);
-        intent.putExtra("myTimestamp", myTimeStamp[clickItemIndex].getTime());
-        intent.putExtra("myTitleSet", myTitleSet[clickItemIndex]);
-        intent.putExtra("myBodySet", myBodySet[clickItemIndex]);
+        intent.putExtra("myTimestamp", myTimeStamp.get(clickItemIndex));
+        intent.putExtra("myTitleSet", myTitleSet.get(clickItemIndex));
+        intent.putExtra("myBodySet", myBodySet.get(clickItemIndex));
+        intent.putExtra("myImageSet", myImageSet.get(clickItemIndex));
         startActivity(intent);
     }
 }

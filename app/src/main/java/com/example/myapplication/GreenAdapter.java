@@ -1,10 +1,14 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Dictionary;
 import java.util.HashMap;
@@ -23,9 +28,10 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     private static final String TAG = GreenAdapter.class.getSimpleName();
     final private ListItemClickListener mOnClickListener;
 
-    private String[] mTitleSet;
-    private String[] mBodySet;
-    private Timestamp[] mTimeStamps;
+    private ArrayList<String> mTitleSet;
+    private ArrayList<String> mBodySet;
+    private ArrayList<Long> mTimeStamps;
+    ArrayList<byte[]> mImageSet;
     private int mNumberItems;
 
     public interface ListItemClickListener{
@@ -38,11 +44,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      *
      * @param numberOfItems Number of items to display in list
      */
-    public GreenAdapter(int numberOfItems, String[] myTitleSet, String[] myBodySet, Timestamp[] myTimeStamps, ListItemClickListener listener) {
+    public GreenAdapter(int numberOfItems, ArrayList<String> myTitleSet,ArrayList<String> myBodySet, ArrayList<Long> myTimeStamps,ArrayList<byte[]> myImageSet, ListItemClickListener listener) {
         mNumberItems = numberOfItems;
         mTitleSet=myTitleSet;
         mBodySet=myBodySet;
         mTimeStamps=myTimeStamps;
+        mImageSet=myImageSet;
         mOnClickListener=listener;
     }
 
@@ -98,6 +105,11 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         return mNumberItems;
     }
 
+    public void updateData(){
+        mNumberItems=mTitleSet.size();
+        notifyDataSetChanged();
+    }
+
     /**
      * Cache of the children views for a list item.
      */
@@ -109,6 +121,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         TextView listDate1;
         TextView listDate2;
         TextView listDate3;
+        ImageView listImageView1;
 
         private final Map<Integer, String> month_map = new HashMap<Integer, String>(){
             {
@@ -142,6 +155,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
             listDate1 = (TextView) itemView.findViewById(R.id.myEntriesText_Date1); //Feb
             listDate2 = (TextView) itemView.findViewById(R.id.myEntriesText_Date2); //01 "Date"
             listDate3 = (TextView) itemView.findViewById(R.id.myEntriesText_Date3); //12.30 pm
+            listImageView1=(ImageView) itemView.findViewById(R.id.myImageView2);
             itemView.setOnClickListener(this);
         }
 
@@ -151,9 +165,15 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
          * @param listIndex Position of the item in the list
          */
         void bind(int listIndex) {
-            listSubtitle1.setText(mTitleSet[listIndex]);
-            listSubtitle2.setText(mBodySet[listIndex]);
-            Timestamp currentTimeStamp=mTimeStamps[listIndex];
+            listSubtitle1.setText(mTitleSet.get(listIndex));
+            listSubtitle2.setText(mBodySet.get(listIndex));
+            byte[] byteArrayExtra=mImageSet.get(listIndex);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArrayExtra, 0, byteArrayExtra.length, new BitmapFactory.Options());
+            listImageView1.setImageBitmap(bitmap);
+            long currentTimeStamp_L=mTimeStamps.get(listIndex);
+            Log.i("mAdapter", "Title: "+mTitleSet.size()+", Body: "+mBodySet.size()+", Timestamp: "+mTimeStamps.size());
+            Log.i("mAdapter", "Title: "+mTitleSet.get(listIndex)+", Body: "+mBodySet.get(listIndex)+", Timestamp: "+mTimeStamps.get(listIndex));
+            Timestamp currentTimeStamp=new Timestamp(currentTimeStamp_L);
             // TimeStamps
             /* https://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html*/
             /* https://www.mkyong.com/java/java-date-and-calendar-examples/*/
@@ -181,5 +201,6 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
             int clickedPosition=getAdapterPosition();
             mOnClickListener.onListItemClick(clickedPosition);
         }
+
     }
 }

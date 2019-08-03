@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.text.Html;
@@ -17,7 +18,7 @@ public class OnBoarding extends AppCompatActivity {
     private ViewPager mSliderViewPager;
     private LinearLayout mDotLayout;
 
-    private TextView[] mDots;
+    private ImageView[] mDots;
 
     private SliderAdapter mSliderAdapter;
 
@@ -57,20 +58,21 @@ public class OnBoarding extends AppCompatActivity {
     }
 
     public void addDotsIndicator(int position){
-        mDots= new TextView[3];
+        mDots= new ImageView[5];
         mDotLayout.removeAllViews();
-
         for(int i=0;i<mDots.length;i++){
-            mDots[i]= new TextView(this);
-            mDots[i].setText(Html.fromHtml("&#8226"));
-            mDots[i].setTextSize(35);
-            mDots[i].setTextColor(getResources().getColor(R.color.colorTransparentWhiteOB));
+            mDots[i]= new ImageView(this);
+            mDots[i].setImageResource(R.drawable.unselecteddots);
+            mDots[i].setScaleType(ImageView.ScaleType.CENTER_CROP);
 
             mDotLayout.addView(mDots[i]);
+            mDots[i].getLayoutParams().height=30;
+            mDots[i].getLayoutParams().width=60;
+            mDots[i].setPadding(0, 0, 30, 0);
         }
 
         if(mDots.length>0){
-            mDots[position].setTextColor(getResources().getColor(R.color.colorWhiteOB));
+            mDots[position].setImageResource(R.drawable.selecteddots);
         }
     }
 
@@ -84,14 +86,13 @@ public class OnBoarding extends AppCompatActivity {
         public void onPageSelected(int position) {
             addDotsIndicator(position);
             mCurrentPage=position;
-            if(position==2){
+            if(position==4){
                 mNextButton.setEnabled(true);
                 mNextButton.setVisibility(View.VISIBLE);
             }else{
                 mNextButton.setEnabled(false);
                 mNextButton.setVisibility(View.INVISIBLE);
             }
-            mSliderAdapter.restartVideo();
             mSliderViewPager.getCurrentItem();
         }
 

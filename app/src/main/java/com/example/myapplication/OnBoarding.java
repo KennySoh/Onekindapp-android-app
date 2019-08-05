@@ -48,7 +48,6 @@ public class OnBoarding extends AppCompatActivity {
             public void onClick(View v) {
                 // Can use mCurrentPosition to change buttons based on page
                 // Just send to a different activity
-                Toast.makeText(OnBoarding.this, "Diary", Toast.LENGTH_SHORT).show();
                 Intent main_intent = new Intent(OnBoarding.this, MainActivity.class);
                 finish();
                 OnBoarding.this.startActivity(main_intent);

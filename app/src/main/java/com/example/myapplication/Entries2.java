@@ -7,11 +7,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -30,10 +32,14 @@ import java.util.TimeZone;
 
 public class Entries2 extends AppCompatActivity {
     Toolbar toolbar;
-    ImageView imageView1;
+    ImageView toolbar_sharing;
     Button btnSave;
     Intent intent;
+    ViewGroup hiddenPanel;
+    ImageView hiddenImage;
+    TextView backgroundSocial;
 
+    ImageView imageView1;
     EditText listSubtitle1;
     EditText listSubtitle2;
     TextView listDate1;
@@ -75,6 +81,33 @@ public class Entries2 extends AppCompatActivity {
                finish();
             }
         });
+
+        //Social Sharing
+       toolbar_sharing=findViewById(R.id.toolbar_logo);
+       hiddenPanel = findViewById(R.id.socialSharing);
+       hiddenPanel.setVisibility(View.INVISIBLE);
+       backgroundSocial=findViewById(R.id.background_social);
+       final Animation bottomUp = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bottom_up);
+       final Animation bottomDown = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bottom_down);
+       toolbar_sharing.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               hiddenPanel.setVisibility(View.VISIBLE);
+               hiddenPanel.startAnimation(bottomUp);
+               backgroundSocial.setBackgroundColor(Color.parseColor("#A6131212"));
+           }
+       });
+       hiddenImage=findViewById(R.id.socialSharingImage);
+       hiddenImage.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               hiddenPanel.setVisibility(View.INVISIBLE);
+               hiddenPanel.startAnimation(bottomDown);
+               backgroundSocial.setBackgroundColor(Color.TRANSPARENT);
+               Toast.makeText(getApplicationContext(), "Shared on Online", Toast.LENGTH_SHORT).show();
+
+           }
+       });
 
 
         //Setting phototaken into imageView

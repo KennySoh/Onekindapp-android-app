@@ -171,16 +171,18 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_data:
-                        Toast.makeText(MainActivity.this, "Data", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Data", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_diary:
-                        Toast.makeText(MainActivity.this, "Diary_duplicate", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Diary_duplicate", Toast.LENGTH_SHORT).show();
+                        finish();
                         Intent diary_intent = new Intent(MainActivity.this, Diary_duplicate.class);
                         MainActivity.this.startActivity(diary_intent);
                         break;
                     case R.id.action_calendar:
-                        Toast.makeText(MainActivity.this, "Calender", Toast.LENGTH_SHORT).show();
-                        Intent lottie_intent = new Intent(MainActivity.this, Barcode_test.class);
+//                        Toast.makeText(MainActivity.this, "Calender", Toast.LENGTH_SHORT).show();
+                        finish();
+                        Intent lottie_intent = new Intent(MainActivity.this, CalenderView.class);
                         MainActivity.this.startActivity(lottie_intent);
 
                         break;

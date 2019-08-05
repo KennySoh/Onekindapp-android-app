@@ -99,6 +99,7 @@ public class Entries extends AppCompatActivity implements GreenAdapter.ListItemC
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void dispatchTakePictureIntent() {
+        Toast.makeText(Entries.this, "Take A Photo of your plant!", Toast.LENGTH_SHORT).show();
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -149,19 +150,13 @@ public class Entries extends AppCompatActivity implements GreenAdapter.ListItemC
 
     @Override
     public void onListItemClick(int clickItemIndex) {
-        if(mToast!=null){
-            mToast.cancel();
-        }
-        String toastMessage="ITEM #"+clickItemIndex+" Clicked";
-        mToast=Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT);
-        mToast.show();
 
         //Send intent to entries 2 along with Data in
         Intent intent = new Intent(this, Entries2.class);
         intent.putExtra("myTimestamp", myTimeStamp.get(clickItemIndex));
         intent.putExtra("myTitleSet", myTitleSet.get(clickItemIndex));
         intent.putExtra("myBodySet", myBodySet.get(clickItemIndex));
-        intent.putExtra("myImageSet", myImageSet.get(clickItemIndex));
+        intent.putExtra("photo", myImageSet.get(clickItemIndex));
         startActivity(intent);
     }
 }

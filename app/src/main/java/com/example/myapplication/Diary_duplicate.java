@@ -5,6 +5,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +26,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Diary_duplicate extends AppCompatActivity implements GreenAdapter_Diary.ListItemClickListener {
+    Toolbar toolbar;
+
     // return seed scanners
     private int QR_CODE=200;
 
@@ -45,6 +48,18 @@ public class Diary_duplicate extends AppCompatActivity implements GreenAdapter_D
 
         //Database
         mDbHelper= DatabaseHelper.getInstance(this);
+
+        //Setting backbutton on toolbar to go back
+        toolbar= findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(Diary_duplicate.this, "Diary_duplicate", Toast.LENGTH_SHORT).show();
+                Intent diary_intent = new Intent(Diary_duplicate.this, MainActivity.class);
+                Diary_duplicate.this.startActivity(diary_intent);;
+            }
+        });
 
         //Declaring Title for Recyclerview
         myTitleSet=new ArrayList<String >();
@@ -79,7 +94,7 @@ public class Diary_duplicate extends AppCompatActivity implements GreenAdapter_D
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Diary_duplicate.this, "QRCODE", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Diary_duplicate.this, "QRCODE", Toast.LENGTH_SHORT).show();
                 Intent qr_intent = new Intent(Diary_duplicate.this, Barcode_test.class);
                 Diary_duplicate.this.startActivityForResult(qr_intent,QR_CODE);
             }
@@ -92,14 +107,19 @@ public class Diary_duplicate extends AppCompatActivity implements GreenAdapter_D
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_data:
-                        Toast.makeText(Diary_duplicate.this, "Data", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Diary_duplicate.this, "Data", Toast.LENGTH_SHORT).show();
                         finish();
+                        Intent diary_intent = new Intent(Diary_duplicate.this, MainActivity.class);
+                        Diary_duplicate.this.startActivity(diary_intent);
                         break;
                     case R.id.action_diary:
-                        Toast.makeText(Diary_duplicate.this, "Diary", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Diary_duplicate.this, "Diary", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_calendar:
-                        Toast.makeText(Diary_duplicate.this, "Calender", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Diary_duplicate.this, "Calender", Toast.LENGTH_SHORT).show();
+                        finish();
+                        Intent diary1_intent = new Intent(Diary_duplicate.this, CalenderView.class);
+                        Diary_duplicate.this.startActivity(diary1_intent);
                         break;
                 }
                 return true;
@@ -113,7 +133,7 @@ public class Diary_duplicate extends AppCompatActivity implements GreenAdapter_D
         if (requestCode==QR_CODE){
             try {
                 String seed = data.getStringExtra("qrCode");
-                Toast.makeText(Diary_duplicate.this, seed, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Diary_duplicate.this, seed, Toast.LENGTH_SHORT).show();
                 //add Seeds into recycler view.
                 String itemToFind = "Item 1";
                 if(!myTitleSet.contains(seed)) {//Ensure no repeated seeds are added
@@ -135,12 +155,12 @@ public class Diary_duplicate extends AppCompatActivity implements GreenAdapter_D
 
     @Override
     public void onListItemClick(int clickItemIndex) {
-        if(mToast!=null){
-            mToast.cancel();
-        }
-        String toastMessage="ITEM #"+clickItemIndex+" Clicked";
-        mToast=Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT);
-        mToast.show();
+//        if(mToast!=null){
+//            mToast.cancel();
+//        }
+//        String toastMessage="ITEM #"+clickItemIndex+" Clicked";
+//        mToast=Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT);
+//        mToast.show();
 
         Intent entries_intent = new Intent(Diary_duplicate.this, Entries.class);
         String currentTitle=mAdapter.mTitleSet.get(clickItemIndex); //sending title

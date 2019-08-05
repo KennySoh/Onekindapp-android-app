@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -16,10 +17,13 @@
         android:roundIcon="@mipmap/notification_onekindhouse_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
-            android:value="barcode"></meta-data>
+        <activity android:name=".CalenderView"></activity>
 
-        <activity android:name=".Barcode_test"></activity>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+
+        <activity android:name=".Barcode_test" />
         <activity android:name=".Diary_duplicate" />
         <activity android:name=".qr_code" />
         <activity android:name=".Home">

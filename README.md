@@ -59,4 +59,7 @@ When water level sensor is low, a real-time notification is triggered to the app
 ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db7.png) 
 ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db8.png) 
 
+#### Seed Scanner Journal
+The following details the SQL db schema to store diary journal & Seed Information
+![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db6.png) 
 

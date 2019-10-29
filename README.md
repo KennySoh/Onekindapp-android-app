@@ -45,7 +45,8 @@ The image below details how arduino sensors data was stored onto the No-sql clou
 ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db1.png) 
   
 The following schema was used to ensure every copy based on timestamp was recorded. 
-|No-SQL     | Schema used       | 
+ 
+| No-SQL     | Schema used       | 
 | ------------- |:-------------:| 
 | ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db2.png)     | ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db3.png)  |
  

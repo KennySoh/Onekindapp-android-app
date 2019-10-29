@@ -13,6 +13,7 @@ Have a look at the application!
 https://www.youtube.com/watch?v=BzXPvuvuLuM&t=1s  
 
 The table below list out all the User Interface Screen
+  
 | Onboarding     | 
 | ------------- |
 | ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-1.png)       |
@@ -24,15 +25,15 @@ The table below list out all the User Interface Screen
 | Water Level sensor
 ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-3.png)       |
 
-| Picture Journal    | 
+| Picture Diary Journal    | 
 | ------------- |
 | ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-4.png)       |
 
-| Onboarding     | 
+| Seed Scanner     | 
 | ------------- |
 | ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-5.png)       |
 
-| Onboarding     | 
+| Real-Time Notification    | 
 | ------------- |
 | ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-6.png)       |
 

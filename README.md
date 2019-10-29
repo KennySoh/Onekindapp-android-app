@@ -12,7 +12,29 @@ One Kind Window is an IOT Modular Gardening Sytem speared headed by upstart urba
 Have a look at the application!   
 https://www.youtube.com/watch?v=BzXPvuvuLuM&t=1s  
 
+The table below list out all the User Interface Screen
+| Onboarding     | 
+| ------------- |
+| ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-1.png)       |
 
+| Data Visualisation    | 
+| ------------- |
+| Light sensor
+  ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-2.png)       |
+| Water Level sensor
+![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-3.png)       |
+
+| Picture Journal    | 
+| ------------- |
+| ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-4.png)       |
+
+| Onboarding     | 
+| ------------- |
+| ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-5.png)       |
+
+| Onboarding     | 
+| ------------- |
+| ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-6.png)       |
 
 ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/sample-project4.png) 
  

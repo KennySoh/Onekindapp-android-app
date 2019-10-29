@@ -37,5 +37,8 @@ The table below list out all the User Interface Screen
 | ------------- |
 | ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/ui-6.png)       |
 
+### Overall System Architecture
 ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/sample-project4.png) 
+
+### No-SQL IOT AWS DataBase
  

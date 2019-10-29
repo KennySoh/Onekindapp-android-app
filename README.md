@@ -40,5 +40,10 @@ The table below list out all the User Interface Screen
 ### Overall System Architecture
 ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/sample-project4.png) 
 
-### No-SQL IOT AWS DataBase
+#### Sensor to cloud
+The image below details how arduino sensors data was stored onto the No-sql cloud databse.
+![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db1.png) 
+  
+The following schema was used to ensure every copy based on timestamp was recorded. 
+![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db2.png) 
  

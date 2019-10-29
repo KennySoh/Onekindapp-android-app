@@ -53,3 +53,10 @@ The following schema was used to ensure every copy based on timestamp was record
 #### Cloud to Android APP
 Aws restful end points was created to access the No-sql cloud database. The android application was then able to access this end points. 
 ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db4.png) 
+
+#### Real-Time Notification
+When water level sensor is low, a real-time notification is triggered to the applicaiton. 
+![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db7.png) 
+![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/db8.png) 
+
+

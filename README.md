@@ -9,6 +9,8 @@ One Kind Window is an IOT Modular Gardening Sytem speared headed by upstart urba
 | ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/sample-project3.png)       | ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/sample-project5.png) |
 
 ## Software
+
+### Check out the youtube video
 Have a look at the application!   
 https://www.youtube.com/watch?v=BzXPvuvuLuM&t=1s  
 

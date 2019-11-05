@@ -1,3 +1,6 @@
+# Youtube Demo
+https://www.youtube.com/watch?v=BzXPvuvuLuM&t=
+
 # One Kind Window
 ![images](https://github.com/KennySoh/Onekindapp-android-app/blob/master/sample-project2.png)  
   
